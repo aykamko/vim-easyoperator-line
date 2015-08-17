@@ -56,7 +56,6 @@ function! easyoperator#line#selectlines() "{{{
     endif
 
     let pos1 = [line('.'), col('.')]
-    keepjumps call cursor(orig_pos[0], orig_pos[1])
 
     call EasyMotion#highlight#add_highlight(
         \ '\%'. pos1[0] .'l', g:EasyOperator_line_first)
@@ -85,9 +84,8 @@ function! easyoperator#line#selectlinesdelete() "{{{
     endif
 
     " Prepare the number of lines "{{{
-    let start_of_line = line("v")
-    normal! o
-    let end_of_line = line("v")
+    let start_of_line = line("'<")
+    let end_of_line = line("'>")
     "}}}
     normal! d
     if orig_pos[0] < max([start_of_line,end_of_line])
